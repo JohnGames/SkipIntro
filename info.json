@@ -3,7 +3,7 @@
   "DisplayName": "SkipIntro",
   "Author": "JohnGames",
   "Version": "1.0.0",
-  "ManagerVersion": "1.0.0",
+  "ManagerVersion": "0.21.3.0",
   "GameVersion": "127.2",
   "AssemblyName": "SkipIntro.dll",
   "EntryMethod": "SkipIntro.Main.Load",
