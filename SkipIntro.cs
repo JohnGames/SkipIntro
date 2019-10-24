@@ -14,16 +14,16 @@ namespace SkipIntro
 {
 	static class Main
 	{
-		public static ModEntry mod;
 
 		// Send a response to the mod manager about the launch status, success or not.
 		static bool Load(ModEntry modEntry)
 		{
 			var harmony = HarmonyInstance.Create(modEntry.Info.Id);
 			harmony.PatchAll(Assembly.GetExecutingAssembly());
-			if(modEntry.GameVersion != gameVersion)
+			if(modEntry.GameVersion != GetVersion())
 			{
-				UnityModManager.Logger("Not same version!");
+				UnityModManager.Logger.Log($"Skip Intro expects {modEntry.GameVersion} but found {GetVersion()}.");
+				return false;
 			}
 			return true; // If false the mod will show an error.
 		}

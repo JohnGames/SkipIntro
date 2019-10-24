@@ -1,0 +1,7 @@
+C:\Users\JohnC\Git\Mods\SkipIntro\bin\Release\info.json
+C:\Users\JohnC\Git\Mods\SkipIntro\bin\Release\BigHeadMod.dll
+C:\Users\JohnC\Git\Mods\SkipIntro\obj\Release\SkipIntro.csproj.CoreCompileInputs.cache
+C:\Users\JohnC\Git\Mods\SkipIntro\obj\Release\SkipIntro.csprojAssemblyReference.cache
+C:\Users\JohnC\Git\Mods\SkipIntro\bin\Release\SkipIntro\info.json
+C:\Users\JohnC\Git\Mods\SkipIntro\bin\Release\SkipIntro\SkipIntro.dll
+C:\Users\JohnC\Git\Mods\SkipIntro\obj\Release\SkipIntro.dll

@@ -4,9 +4,9 @@
   "Author": "JohnGames",
   "Version": "1.0.0",
   "ManagerVersion": "1.0.0",
-  "GameVersion": "127",
+  "GameVersion": "127.2",
   "AssemblyName": "SkipIntro.dll",
   "EntryMethod": "SkipIntro.Main.Load",
-  "HomePage": "https://www.nexusmods.com/pathfinderkingmaker/mods/1",
-  "Repository": "https://raw.githubusercontent.com/newman55/unity-mods/master/kingmaker/Repository.json"
+  "HomePage": "https://github.com/JohnGames/SkipIntro",
+  "Repository": "https://raw.githubusercontent.com/JohnGames/SkipIntro/master/Repository.json"
 }

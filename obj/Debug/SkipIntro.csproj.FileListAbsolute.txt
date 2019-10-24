@@ -1,0 +1,12 @@
+C:\Users\JohnC\Git\Mods\SkipIntro\bin\Debug\info.json
+C:\Users\JohnC\Git\Mods\SkipIntro\bin\Debug\BigHeadMod.dll
+C:\Users\JohnC\Git\Mods\SkipIntro\bin\Debug\BigHeadMod.pdb
+C:\Users\JohnC\Git\Mods\SkipIntro\bin\Debug\0Harmony.dll
+C:\Users\JohnC\Git\Mods\SkipIntro\bin\Debug\UnityModManager.dll
+C:\Users\JohnC\Git\Mods\SkipIntro\bin\Debug\dnlib.dll
+C:\Users\JohnC\Git\Mods\SkipIntro\bin\Debug\UnityModManager.xml
+C:\Users\JohnC\Git\Mods\SkipIntro\obj\Debug\SkipIntro.csprojAssemblyReference.cache
+C:\Users\JohnC\Git\Mods\SkipIntro\obj\Debug\SkipIntro.csproj.CoreCompileInputs.cache
+C:\Users\JohnC\Git\Mods\SkipIntro\obj\Debug\SkipIntro.csproj.CopyComplete
+C:\Users\JohnC\Git\Mods\SkipIntro\obj\Debug\BigHeadMod.dll
+C:\Users\JohnC\Git\Mods\SkipIntro\obj\Debug\BigHeadMod.pdb
