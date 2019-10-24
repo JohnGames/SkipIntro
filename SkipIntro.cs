@@ -9,6 +9,8 @@ using System.Reflection;
 using static UnityModManagerNet.UnityModManager;
 using System.IO;
 using System.Collections;
+using UnityEngine.Video;
+using System.Reflection.Emit;
 
 namespace SkipIntro
 {
@@ -20,7 +22,7 @@ namespace SkipIntro
 		{
 			var harmony = HarmonyInstance.Create(modEntry.Info.Id);
 
-			if(modEntry.GameVersion != gameVersion)
+			if (modEntry.GameVersion != gameVersion)
 			{
 				UnityModManager.Logger.Log($"Skip Intro expects {modEntry.GameVersion} but found {gameVersion}.");
 				return false;
@@ -32,31 +34,87 @@ namespace SkipIntro
 
 	}
 
-	[HarmonyPatch(typeof(Boot))]
-	[HarmonyPatch("Start")]
-	static class SkipIntro
+	static class SkipIntroParent
 	{
-
-		static void Postfix(Boot __instance, ref int ___m_Stage)
+		[HarmonyPatch(typeof(Boot))]
+		[HarmonyPatch("Start")]
+		public static class SkipIntro
 		{
-			Traverse traverse = Traverse.Create(__instance);
-			traverse.Field<bool>("m_SkipVideo").Value = true;
-			int limit = traverse.Field<string[]>("m_Names").Value.Length;
-			while (___m_Stage != limit)
-			{
-				___m_Stage++;
-				LoadManager(___m_Stage);
-			}
-			traverse.Method("AllLoaded");
-			
 
-			void LoadManager(int i)
+			static void Postfix(Boot __instance, ref int ___m_Stage)
 			{
-				string Name = traverse.Field<string[]>("m_Names").Value[i];
-				traverse.Method("LoadManager", new[] { Name });
+				Traverse traverse = Traverse.Create(__instance);
+				traverse.Field<bool>("m_SkipVideo").Value = true;
+				traverse.Field<VideoPlayer>("m_Video").Value.gameObject.SetActive(false);
+			}
+
+			static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+			{
+				var codes = instructions.ToArray<CodeInstruction>();
+				for (int i = 53; i <= 55; i++)
+				{
+					instructions.ElementAt(i).opcode = OpCodes.Nop;
+				}
+				return instructions;
+			}
+
+		}
+
+		[HarmonyPatch(typeof(Boot))]
+		[HarmonyPatch("LoadManager")]
+		public static class LoadManager
+		{
+			static bool Prefix(string Name)
+			{
+				UnityModManager.Logger.Log($"Loading {Name}");
+				return true;
 			}
 		}
 
+		[HarmonyPatch(typeof(Boot))]
+		[HarmonyPatch("Update")]
+		public static class UpdateSkipintro
+		{
+			static bool Prefix(Boot __instance, ref int ___m_Stage)
+			{
+
+				Traverse traverse = Traverse.Create(__instance);
+				int limit = traverse.Field<string[]>("m_Names").Value.Length;
+				if (___m_Stage != limit)
+				{
+					LoadManagerPass(traverse, ___m_Stage);
+					___m_Stage++;
+
+					if (___m_Stage == limit)
+					{
+						UnityModManager.Logger.Log($"Calling AllLoaded");
+						traverse.Method("AllLoaded").GetValue();
+					}
+
+				}
+
+				return false;
+
+				
+			}
+
+			static void LoadManagerPass(Traverse traverse, int i)
+			{
+				string Name = traverse.Field<string[]>("m_Names").Value[i];
+				Type[] paramsTypes = new Type[]
+				{
+					typeof(string)
+				};
+				object[] arguments = new object[]
+				{
+					Name
+				};
+				var methods = traverse.Methods();
+				traverse.Method("LoadManager", paramsTypes, arguments).GetValue();
+			}
+
+
+		}
 	}
 
 }

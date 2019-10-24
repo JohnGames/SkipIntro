@@ -65,6 +65,10 @@
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Autonauts\Autonauts_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Autonauts\Autonauts_Data\Managed\UnityEngine.VideoModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityModManager">
       <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Autonauts\Autonauts_Data\Managed\UnityModManager\UnityModManager.dll</HintPath>
       <Private>False</Private>
