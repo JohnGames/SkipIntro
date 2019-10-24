@@ -19,12 +19,14 @@ namespace SkipIntro
 		static bool Load(ModEntry modEntry)
 		{
 			var harmony = HarmonyInstance.Create(modEntry.Info.Id);
-			harmony.PatchAll(Assembly.GetExecutingAssembly());
-			if(modEntry.GameVersion != GetVersion())
+
+			if(modEntry.GameVersion != gameVersion)
 			{
-				UnityModManager.Logger.Log($"Skip Intro expects {modEntry.GameVersion} but found {GetVersion()}.");
+				UnityModManager.Logger.Log($"Skip Intro expects {modEntry.GameVersion} but found {gameVersion}.");
 				return false;
 			}
+
+			harmony.PatchAll(Assembly.GetExecutingAssembly());
 			return true; // If false the mod will show an error.
 		}
 
@@ -40,7 +42,7 @@ namespace SkipIntro
 			Traverse traverse = Traverse.Create(__instance);
 			traverse.Field<bool>("m_SkipVideo").Value = true;
 			int limit = traverse.Field<string[]>("m_Names").Value.Length;
-			while (___m_Stage < limit)
+			while (___m_Stage != limit)
 			{
 				___m_Stage++;
 				LoadManager(___m_Stage);
