@@ -1,2 +1,9 @@
 bin/
 .vs/SkipIntro/v15/Server/sqlite3/db.lock
+.vs/SkipIntro/v16/Server/sqlite3/db.lock
+.vs/SkipIntro/v16/Server/sqlite3/storage.ide
+.vs/SkipIntro/v16/Server/sqlite3/storage.ide-shm
+.vs/SkipIntro/v16/Server/sqlite3/storage.ide-wal
+.vs/SkipIntro/v16/.suo
+.vs/
+obj/
