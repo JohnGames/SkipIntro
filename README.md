@@ -1,10 +1,7 @@
-# BigHeadMod
-Big Head Autonauts Mod
+# SkipIntroMod
 
 This is a sample mod to showcase how to mod autonauts.
 
-It includes changing all worker heads into big ones.
+It includes changing the boot sequence to remove the intros.  It also contains an example of transpiling.
 
-Also the player model is altered to load from an asset bundle.
-
-Install using [Autonaut Mods Loder](https://github.com/JohnGames/unity-mod-manager)
+Install using [Autonauts Mod Manager](https://github.com/JohnGames/autonauts-mod-manager)

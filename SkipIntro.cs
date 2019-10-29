@@ -25,7 +25,6 @@ namespace SkipIntro
 			if (modEntry.GameVersion != gameVersion)
 			{
 				UnityModManager.Logger.Log($"Skip Intro expects {modEntry.GameVersion} but found {gameVersion}.");
-				return false;
 			}
 
 			harmony.PatchAll(Assembly.GetExecutingAssembly());
@@ -50,12 +49,15 @@ namespace SkipIntro
 
 			static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 			{
-				var codes = instructions.ToArray<CodeInstruction>();
-				for (int i = 53; i <= 55; i++)
+				var ins = instructions.Last<CodeInstruction>(instruction => instruction.opcode == OpCodes.Ldarg_0);
+				var codes = instructions.ToList<CodeInstruction>();
+				var location = codes.IndexOf(ins);
+
+				for (int i = 0; i <= 2; i++)
 				{
-					instructions.ElementAt(i).opcode = OpCodes.Nop;
+					instructions.ElementAt(location+i).opcode = OpCodes.Nop;
 				}
-				return instructions;
+				return codes;
 			}
 
 		}
